@@ -1,0 +1,1911 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Us | UrbanHeaven</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    /* ============================================================
+       CSS CUSTOM PROPERTIES — UrbanHeaven Brand
+    ============================================================ */
+    :root {
+      --clr-black:      #0d0d0d;
+      --clr-white:      #ffffff;
+      --clr-pink:       #f4b8c8;
+      --clr-pink-light: #fce8ee;
+      --clr-pink-mid:   #e8909f;
+      --clr-pink-dark:  #d4637a;
+      --clr-grey-soft:  #f8f5f6;
+      --clr-grey-mid:   #b0a8ab;
+      --clr-grey-text:  #4a4446;
+
+      --ff-heading: 'Poppins', sans-serif;
+      --ff-body:    'Open Sans', sans-serif;
+
+      --radius-sm:  6px;
+      --radius-md:  14px;
+      --radius-lg:  24px;
+      --radius-xl:  40px;
+
+      --shadow-card:  0 4px 28px rgba(212, 99, 122, 0.10);
+      --shadow-hover: 0 12px 40px rgba(212, 99, 122, 0.22);
+
+      --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* ============================================================
+       RESET & BASE
+    ============================================================ */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      font-family: var(--ff-body);
+      background-color: var(--clr-white);
+      color: var(--clr-grey-text);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    /* ============================================================
+       NAVIGATION
+    ============================================================ */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--clr-pink-light);
+    }
+
+    .nav-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 32px;
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-family: var(--ff-heading);
+      font-size: 1.6rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      color: var(--clr-black);
+    }
+
+    .nav-logo span {
+      color: var(--clr-pink-dark);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-family: var(--ff-heading);
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      color: var(--clr-grey-text);
+      transition: color var(--transition);
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--clr-pink-dark);
+      border-radius: 2px;
+      transition: width var(--transition);
+    }
+
+    .nav-links a:hover { color: var(--clr-black); }
+    .nav-links a:hover::after { width: 100%; }
+
+    .nav-links a.active {
+      color: var(--clr-pink-dark);
+    }
+
+    .nav-links a.active::after {
+      width: 100%;
+    }
+
+    .nav-cta {
+      background: var(--clr-black) !important;
+      color: var(--clr-white) !important;
+      padding: 10px 22px;
+      border-radius: var(--radius-xl);
+      font-size: 0.82rem !important;
+      font-weight: 600 !important;
+      transition: background var(--transition), transform var(--transition) !important;
+    }
+
+    .nav-cta::after { display: none !important; }
+
+    .nav-cta:hover {
+      background: var(--clr-pink-dark) !important;
+      transform: translateY(-1px);
+    }
+
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+
+    .nav-hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--clr-black);
+      border-radius: 2px;
+      transition: var(--transition);
+    }
+
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 70px;
+      left: 0;
+      width: 100%;
+      background: var(--clr-white);
+      border-top: 1px solid var(--clr-pink-light);
+      padding: 24px 32px;
+      flex-direction: column;
+      gap: 20px;
+      z-index: 999;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+    }
+
+    .mobile-menu.open {
+      display: flex;
+    }
+
+    .mobile-menu a {
+      font-family: var(--ff-heading);
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--clr-grey-text);
+      padding: 8px 0;
+      border-bottom: 1px solid var(--clr-pink-light);
+      transition: color var(--transition);
+    }
+
+    .mobile-menu a:hover { color: var(--clr-pink-dark); }
+
+    /* ============================================================
+       PAGE HERO
+    ============================================================ */
+    .hero {
+      position: relative;
+      margin-top: 70px;
+      height: 420px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background-color: var(--clr-black);
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=1600&auto=format&fit=crop&q=80');
+      background-size: cover;
+      background-position: center 30%;
+      opacity: 0.35;
+      transform: scale(1.05);
+      animation: heroZoom 8s ease-out forwards;
+    }
+
+    @keyframes heroZoom {
+      from { transform: scale(1.05); }
+      to   { transform: scale(1.0); }
+    }
+
+    /* Pink grain overlay */
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(244,184,200,0.18) 0%, transparent 60%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      animation: fadeUp 0.8s ease-out both;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-eyebrow {
+      display: inline-block;
+      font-family: var(--ff-heading);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--clr-pink);
+      background: rgba(244, 184, 200, 0.12);
+      border: 1px solid rgba(244, 184, 200, 0.3);
+      border-radius: var(--radius-xl);
+      padding: 6px 18px;
+      margin-bottom: 20px;
+    }
+
+    .hero-title {
+      font-family: var(--ff-heading);
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      font-weight: 800;
+      color: var(--clr-white);
+      letter-spacing: -1px;
+      line-height: 1.1;
+    }
+
+    .hero-title span {
+      color: var(--clr-pink);
+    }
+
+    .hero-subtitle {
+      margin-top: 14px;
+      font-size: 1rem;
+      color: rgba(255,255,255,0.65);
+      font-weight: 300;
+      letter-spacing: 0.3px;
+    }
+
+    /* Breadcrumb */
+    .breadcrumb {
+      position: absolute;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--ff-heading);
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.5);
+    }
+
+    .breadcrumb a {
+      color: rgba(255,255,255,0.5);
+      transition: color var(--transition);
+    }
+
+    .breadcrumb a:hover { color: var(--clr-pink); }
+
+    .breadcrumb-sep {
+      width: 16px;
+      height: 1px;
+      background: rgba(255,255,255,0.3);
+    }
+
+    .breadcrumb span:last-child {
+      color: var(--clr-pink);
+    }
+
+    /* ============================================================
+       SECTION UTILITIES
+    ============================================================ */
+    .section {
+      padding: 90px 32px;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--ff-heading);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--clr-pink-dark);
+      margin-bottom: 14px;
+    }
+
+    .section-label::before {
+      content: '';
+      display: block;
+      width: 28px;
+      height: 2px;
+      background: var(--clr-pink-dark);
+      border-radius: 2px;
+    }
+
+    .section-title {
+      font-family: var(--ff-heading);
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      font-weight: 800;
+      color: var(--clr-black);
+      letter-spacing: -0.8px;
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+
+    .section-desc {
+      font-size: 1rem;
+      color: var(--clr-grey-mid);
+      max-width: 540px;
+      line-height: 1.75;
+    }
+
+    /* ============================================================
+       CONTACT INFO STRIP (quick cards under hero)
+    ============================================================ */
+    .info-strip {
+      background: var(--clr-black);
+      padding: 0 32px;
+    }
+
+    .info-strip-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+    }
+
+    .info-strip-card {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      padding: 32px 40px;
+      border-right: 1px solid rgba(255,255,255,0.07);
+      transition: background var(--transition);
+    }
+
+    .info-strip-card:last-child {
+      border-right: none;
+    }
+
+    .info-strip-card:hover {
+      background: rgba(244,184,200,0.06);
+    }
+
+    .info-strip-icon {
+      width: 46px;
+      height: 46px;
+      background: rgba(244,184,200,0.12);
+      border: 1px solid rgba(244,184,200,0.2);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .info-strip-icon svg {
+      width: 20px;
+      height: 20px;
+      stroke: var(--clr-pink);
+      fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .info-strip-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .info-strip-label {
+      font-family: var(--ff-heading);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      margin-bottom: 3px;
+    }
+
+    .info-strip-value {
+      font-family: var(--ff-heading);
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--clr-white);
+    }
+
+    .info-strip-value a {
+      color: var(--clr-white);
+      transition: color var(--transition);
+    }
+
+    .info-strip-value a:hover {
+      color: var(--clr-pink);
+    }
+
+    /* ============================================================
+       MAIN CONTACT SECTION — FORM + SIDEBAR
+    ============================================================ */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 60px;
+      align-items: start;
+    }
+
+    /* --- Contact Form --- */
+    .form-card {
+      background: var(--clr-white);
+      border: 1px solid var(--clr-pink-light);
+      border-radius: var(--radius-lg);
+      padding: 52px 48px;
+      box-shadow: var(--shadow-card);
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 22px;
+    }
+
+    .form-group:last-of-type {
+      margin-bottom: 32px;
+    }
+
+    .form-group label {
+      font-family: var(--ff-heading);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      color: var(--clr-black);
+      margin-bottom: 10px;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      font-family: var(--ff-body);
+      font-size: 0.95rem;
+      color: var(--clr-black);
+      background: var(--clr-grey-soft);
+      border: 1.5px solid transparent;
+      border-radius: var(--radius-md);
+      padding: 14px 18px;
+      outline: none;
+      transition: border-color var(--transition), box-shadow var(--transition), background var(--transition);
+      appearance: none;
+      -webkit-appearance: none;
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: var(--clr-grey-mid);
+      font-size: 0.9rem;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--clr-pink-dark);
+      background: var(--clr-white);
+      box-shadow: 0 0 0 4px rgba(212, 99, 122, 0.10);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 148px;
+    }
+
+    /* Select arrow */
+    .select-wrap {
+      position: relative;
+    }
+
+    .select-wrap::after {
+      content: '';
+      position: absolute;
+      right: 18px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 0;
+      height: 0;
+      border-left: 5px solid transparent;
+      border-right: 5px solid transparent;
+      border-top: 6px solid var(--clr-grey-mid);
+      pointer-events: none;
+    }
+
+    .select-wrap select {
+      width: 100%;
+      cursor: pointer;
+      padding-right: 40px;
+    }
+
+    /* Checkbox */
+    .form-check {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+
+    .form-check input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      border-radius: 4px;
+      border: 1.5px solid var(--clr-pink-mid);
+      background: var(--clr-grey-soft);
+      cursor: pointer;
+      flex-shrink: 0;
+      margin-top: 3px;
+      accent-color: var(--clr-pink-dark);
+    }
+
+    .form-check p {
+      font-size: 0.88rem;
+      color: var(--clr-grey-mid);
+      line-height: 1.6;
+    }
+
+    .form-check a {
+      color: var(--clr-pink-dark);
+      font-weight: 500;
+      border-bottom: 1px solid transparent;
+      transition: border-color var(--transition);
+    }
+
+    .form-check a:hover { border-bottom-color: var(--clr-pink-dark); }
+
+    .btn-submit {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--ff-heading);
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      color: var(--clr-white);
+      background: var(--clr-black);
+      border: none;
+      border-radius: var(--radius-xl);
+      padding: 16px 38px;
+      cursor: pointer;
+      transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+      width: 100%;
+      justify-content: center;
+    }
+
+    .btn-submit svg {
+      width: 18px;
+      height: 18px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      transition: transform var(--transition);
+    }
+
+    .btn-submit:hover {
+      background: var(--clr-pink-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(212, 99, 122, 0.3);
+    }
+
+    .btn-submit:hover svg {
+      transform: translateX(4px);
+    }
+
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 40px 20px;
+      animation: fadeUp 0.5s ease-out;
+    }
+
+    .form-success-icon {
+      width: 64px;
+      height: 64px;
+      background: var(--clr-pink-light);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+    }
+
+    .form-success-icon svg {
+      width: 30px;
+      height: 30px;
+      stroke: var(--clr-pink-dark);
+      fill: none;
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .form-success h3 {
+      font-family: var(--ff-heading);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--clr-black);
+      margin-bottom: 10px;
+    }
+
+    .form-success p {
+      color: var(--clr-grey-mid);
+      font-size: 0.95rem;
+    }
+
+    /* --- Sidebar --- */
+    .sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    .sidebar-card {
+      background: var(--clr-grey-soft);
+      border: 1px solid var(--clr-pink-light);
+      border-radius: var(--radius-md);
+      padding: 32px 28px;
+      transition: box-shadow var(--transition);
+    }
+
+    .sidebar-card:hover {
+      box-shadow: var(--shadow-card);
+    }
+
+    .sidebar-card-title {
+      font-family: var(--ff-heading);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--clr-black);
+      margin-bottom: 22px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .sidebar-card-title svg {
+      width: 18px;
+      height: 18px;
+      stroke: var(--clr-pink-dark);
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    /* Hours table */
+    .hours-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .hours-table tr {
+      border-bottom: 1px solid var(--clr-pink-light);
+    }
+
+    .hours-table tr:last-child {
+      border-bottom: none;
+    }
+
+    .hours-table td {
+      padding: 10px 0;
+      font-size: 0.88rem;
+      color: var(--clr-grey-text);
+    }
+
+    .hours-table td:first-child {
+      font-weight: 600;
+      color: var(--clr-black);
+      font-family: var(--ff-heading);
+      font-size: 0.82rem;
+    }
+
+    .hours-table td:last-child {
+      text-align: right;
+    }
+
+    .badge {
+      display: inline-block;
+      font-family: var(--ff-heading);
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 20px;
+    }
+
+    .badge-open {
+      background: #e8f5e9;
+      color: #2e7d32;
+    }
+
+    .badge-closed {
+      background: #fce8ee;
+      color: var(--clr-pink-dark);
+    }
+
+    /* Social links */
+    .social-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .social-link {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 16px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--clr-pink-light);
+      background: var(--clr-white);
+      font-family: var(--ff-heading);
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--clr-black);
+      transition: background var(--transition), border-color var(--transition), color var(--transition), transform var(--transition);
+      cursor: pointer;
+    }
+
+    .social-link:hover {
+      background: var(--clr-black);
+      border-color: var(--clr-black);
+      color: var(--clr-white);
+      transform: translateY(-2px);
+    }
+
+    .social-link:hover svg {
+      stroke: var(--clr-pink);
+    }
+
+    .social-link svg {
+      width: 16px;
+      height: 16px;
+      stroke: var(--clr-pink-dark);
+      fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      transition: stroke var(--transition);
+    }
+
+    /* ============================================================
+       MAP SECTION
+    ============================================================ */
+    .map-section {
+      padding: 0 32px 90px;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    .map-wrapper {
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      height: 420px;
+      border: 1px solid var(--clr-pink-light);
+      box-shadow: var(--shadow-card);
+    }
+
+    .map-wrapper iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      filter: grayscale(15%) contrast(1.05);
+    }
+
+    /* Map overlay tag */
+    .map-tag {
+      position: absolute;
+      top: 24px;
+      left: 24px;
+      background: var(--clr-white);
+      border: 1px solid var(--clr-pink-light);
+      border-radius: var(--radius-md);
+      padding: 16px 22px;
+      box-shadow: var(--shadow-card);
+      z-index: 2;
+    }
+
+    .map-tag-name {
+      font-family: var(--ff-heading);
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--clr-black);
+      margin-bottom: 4px;
+    }
+
+    .map-tag-addr {
+      font-size: 0.82rem;
+      color: var(--clr-grey-mid);
+    }
+
+    .map-tag-dot {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      background: #4caf50;
+      border-radius: 50%;
+      margin-right: 6px;
+      vertical-align: middle;
+      animation: pulse-dot 1.5s infinite;
+    }
+
+    @keyframes pulse-dot {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(76,175,80,0.4); }
+      50%       { box-shadow: 0 0 0 6px rgba(76,175,80,0); }
+    }
+
+    /* ============================================================
+       FAQ SECTION
+    ============================================================ */
+    .faq-section {
+      background: var(--clr-black);
+      padding: 90px 32px;
+    }
+
+    .faq-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    .faq-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 56px;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+
+    .faq-section .section-label {
+      color: var(--clr-pink);
+    }
+
+    .faq-section .section-label::before {
+      background: var(--clr-pink);
+    }
+
+    .faq-section .section-title {
+      color: var(--clr-white);
+    }
+
+    .faq-section .section-desc {
+      color: rgba(255,255,255,0.45);
+    }
+
+    .faq-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    details.faq-item {
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--radius-md);
+      background: rgba(255,255,255,0.03);
+      overflow: hidden;
+      transition: border-color var(--transition), background var(--transition);
+    }
+
+    details.faq-item[open] {
+      border-color: rgba(244,184,200,0.3);
+      background: rgba(244,184,200,0.04);
+    }
+
+    details.faq-item summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 22px 26px;
+      cursor: pointer;
+      font-family: var(--ff-heading);
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--clr-white);
+      list-style: none;
+      user-select: none;
+      transition: color var(--transition);
+    }
+
+    details.faq-item summary::-webkit-details-marker { display: none; }
+
+    details.faq-item[open] summary {
+      color: var(--clr-pink);
+    }
+
+    .faq-icon {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.06);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: background var(--transition), transform var(--transition);
+    }
+
+    .faq-icon svg {
+      width: 14px;
+      height: 14px;
+      stroke: var(--clr-pink);
+      fill: none;
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      transition: transform var(--transition);
+    }
+
+    details.faq-item[open] .faq-icon {
+      background: rgba(244,184,200,0.15);
+    }
+
+    details.faq-item[open] .faq-icon svg {
+      transform: rotate(45deg);
+    }
+
+    .faq-body {
+      padding: 0 26px 22px;
+      font-size: 0.92rem;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.8;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding-top: 18px;
+    }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+    .footer {
+      background: var(--clr-black);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 64px 32px 32px;
+    }
+
+    .footer-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.8fr 1fr 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 52px;
+    }
+
+    .footer-brand-logo {
+      font-family: var(--ff-heading);
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--clr-white);
+      margin-bottom: 18px;
+      letter-spacing: -0.5px;
+    }
+
+    .footer-brand-logo span {
+      color: var(--clr-pink);
+    }
+
+    .footer-brand p {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.4);
+      line-height: 1.8;
+      max-width: 280px;
+      margin-bottom: 28px;
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 12px;
+    }
+
+    .footer-social-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.05);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background var(--transition), border-color var(--transition), transform var(--transition);
+    }
+
+    .footer-social-btn:hover {
+      background: var(--clr-pink-dark);
+      border-color: var(--clr-pink-dark);
+      transform: translateY(-3px);
+    }
+
+    .footer-social-btn svg {
+      width: 15px;
+      height: 15px;
+      stroke: rgba(255,255,255,0.6);
+      fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      transition: stroke var(--transition);
+    }
+
+    .footer-social-btn:hover svg {
+      stroke: var(--clr-white);
+    }
+
+    .footer-col-title {
+      font-family: var(--ff-heading);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--clr-white);
+      margin-bottom: 24px;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 13px;
+    }
+
+    .footer-links a {
+      font-size: 0.87rem;
+      color: rgba(255,255,255,0.4);
+      transition: color var(--transition);
+    }
+
+    .footer-links a:hover { color: var(--clr-pink); }
+
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 28px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .footer-bottom p {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.25);
+    }
+
+    .footer-bottom-links {
+      display: flex;
+      gap: 24px;
+    }
+
+    .footer-bottom-links a {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.25);
+      transition: color var(--transition);
+    }
+
+    .footer-bottom-links a:hover { color: var(--clr-pink); }
+
+    /* ============================================================
+       RESPONSIVE DESIGN
+    ============================================================ */
+    @media (max-width: 1024px) {
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .sidebar {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 22px;
+      }
+
+      .faq-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 36px;
+      }
+
+      .info-strip-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .info-strip-card {
+        border-right: none;
+        border-bottom: 1px solid rgba(255,255,255,0.07);
+      }
+
+      .info-strip-card:last-child {
+        border-bottom: none;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .section {
+        padding: 60px 20px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .nav-hamburger {
+        display: flex;
+      }
+
+      .hero {
+        height: 340px;
+      }
+
+      .form-card {
+        padding: 32px 24px;
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
+
+      .sidebar {
+        grid-template-columns: 1fr;
+      }
+
+      .map-section {
+        padding: 0 20px 60px;
+      }
+
+      .map-wrapper {
+        height: 320px;
+      }
+
+      .faq-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .faq-section {
+        padding: 60px 20px;
+      }
+
+      .footer {
+        padding: 48px 20px 24px;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 28px;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+      }
+
+      .info-strip {
+        padding: 0 20px;
+      }
+
+      .info-strip-card {
+        padding: 22px 0;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .nav-inner {
+        padding: 0 20px;
+      }
+
+      .hero-title {
+        font-size: 2rem;
+      }
+
+      .social-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ============================================================
+       NAVIGATION
+  ============================================================ -->
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">Urban<span>Heaven</span></a>
+
+      <ul class="nav-links" role="list">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="products.html">Shop</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html" class="active">Contact</a></li>
+        <li><a href="products.html" class="nav-cta">Shop Now</a></li>
+      </ul>
+
+      <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false" id="hamburgerBtn">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Mobile navigation">
+    <a href="index.html">Home</a>
+    <a href="products.html">Shop</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </div>
+
+  <main id="main-content">
+
+    <!-- ============================================================
+         HERO
+    ============================================================ -->
+    <section class="hero" aria-label="Contact page hero">
+      <div class="hero-bg" role="presentation" aria-hidden="true"></div>
+      <div class="hero-content">
+        <p class="hero-eyebrow">Get In Touch</p>
+        <h1 class="hero-title">Contact <span>Us</span></h1>
+        <p class="hero-subtitle">We'd love to hear from you. Let's talk.</p>
+      </div>
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="index.html">Home</a>
+        <span class="breadcrumb-sep" aria-hidden="true"></span>
+        <span>Contact</span>
+      </nav>
+    </section>
+
+    <!-- ============================================================
+         QUICK INFO STRIP
+    ============================================================ -->
+    <div class="info-strip" aria-label="Quick contact information">
+      <div class="info-strip-inner">
+
+        <div class="info-strip-card">
+          <div class="info-strip-icon" aria-hidden="true">
+            <!-- Location pin icon -->
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
+              <circle cx="12" cy="9" r="2.5"/>
+            </svg>
+          </div>
+          <div class="info-strip-text">
+            <span class="info-strip-label">Our Address</span>
+            <span class="info-strip-value">14 Holyghost, Enugu, 8001</span>
+          </div>
+        </div>
+
+        <div class="info-strip-card">
+          <div class="info-strip-icon" aria-hidden="true">
+            <!-- Phone icon -->
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+            </svg>
+          </div>
+          <div class="info-strip-text">
+            <span class="info-strip-label">Phone</span>
+            <span class="info-strip-value">
+              <a href="tel:+27216001234">+234 21 600 1234</a>
+            </span>
+          </div>
+        </div>
+
+        <div class="info-strip-card">
+          <div class="info-strip-icon" aria-hidden="true">
+            <!-- Mail icon -->
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+              <polyline points="22,6 12,13 2,6"/>
+            </svg>
+          </div>
+          <div class="info-strip-text">
+            <span class="info-strip-label">Email</span>
+            <span class="info-strip-value">
+              <a href="mailto:hello@urbanheaven.co.za">hello@urbanheaven.com</a>
+            </span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ============================================================
+         CONTACT FORM + SIDEBAR
+    ============================================================ -->
+    <section class="section" aria-labelledby="contact-heading">
+      <div style="margin-bottom: 52px;">
+        <p class="section-label" aria-hidden="true">Send A Message</p>
+        <h2 class="section-title" id="contact-heading">We're here to help</h2>
+        <p class="section-desc">
+          Fill in the form and our team will get back to you within 24 hours.
+          We're happy to answer any questions about orders, products, or anything else.
+        </p>
+      </div>
+
+      <div class="contact-grid">
+
+        <!-- Contact Form -->
+        <div class="form-card">
+          <form id="contactForm" novalidate aria-label="Contact form">
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="fname">First Name</label>
+                <input
+                  type="text"
+                  id="fname"
+                  name="first_name"
+                  placeholder="e.g. Ayesha"
+                  autocomplete="given-name"
+                  required
+                  aria-required="true"
+                />
+              </div>
+              <div class="form-group">
+                <label for="lname">Last Name</label>
+                <input
+                  type="text"
+                  id="lname"
+                  name="last_name"
+                  placeholder="e.g. Petersen"
+                  autocomplete="family-name"
+                  required
+                  aria-required="true"
+                />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="you@example.com"
+                autocomplete="email"
+                required
+                aria-required="true"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="phone">Phone Number (optional)</label>
+              <input
+                type="tel"
+                id="phone"
+                name="phone"
+                placeholder="+27 82 000 0000"
+                autocomplete="tel"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="subject">Subject</label>
+              <div class="select-wrap">
+                <select id="subject" name="subject" required aria-required="true">
+                  <option value="" disabled selected>Choose a topic...</option>
+                  <option value="order">Order Enquiry</option>
+                  <option value="return">Returns and Refunds</option>
+                  <option value="shipping">Shipping Information</option>
+                  <option value="product">Product Question</option>
+                  <option value="collaboration">Brand Collaboration</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group" style="margin-bottom: 22px;">
+              <label for="message">Your Message</label>
+              <textarea
+                id="message"
+                name="message"
+                placeholder="Tell us how we can help you..."
+                required
+                aria-required="true"
+              ></textarea>
+            </div>
+
+            <div class="form-check">
+              <input type="checkbox" id="privacy" name="privacy" required aria-required="true" />
+              <p>
+                I agree to UrbanHeaven's <a href="#">Privacy Policy</a> and consent to being
+                contacted regarding my enquiry.
+              </p>
+            </div>
+
+            <button type="submit" class="btn-submit" aria-label="Send your message">
+              Send Message
+              <!-- Arrow right icon -->
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <line x1="5" y1="12" x2="19" y2="12"/>
+                <polyline points="12,5 19,12 12,19"/>
+              </svg>
+            </button>
+          </form>
+
+          <!-- Success State -->
+          <div class="form-success" id="formSuccess" role="status" aria-live="polite">
+            <div class="form-success-icon" aria-hidden="true">
+              <!-- Checkmark icon -->
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <polyline points="20,6 9,17 4,12"/>
+              </svg>
+            </div>
+            <h3>Message Sent!</h3>
+            <p>
+              Thank you for reaching out. Our team will be in touch within 24 hours.
+            </p>
+          </div>
+        </div>
+
+        <!-- Sidebar -->
+        <aside class="sidebar" aria-label="Contact details">
+
+          <!-- Business Hours -->
+          <div class="sidebar-card">
+            <h3 class="sidebar-card-title">
+              <!-- Clock icon -->
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="12" cy="12" r="10"/>
+                <polyline points="12,6 12,12 16,14"/>
+              </svg>
+              Business Hours
+            </h3>
+            <table class="hours-table" aria-label="Business hours">
+              <tbody>
+                <tr>
+                  <td>Mon - Fri</td>
+                  <td>08:00 - 18:00</td>
+                  <td><span class="badge badge-open">Open</span></td>
+                </tr>
+                <tr>
+                  <td>Saturday</td>
+                  <td>09:00 - 15:00</td>
+                  <td><span class="badge badge-open">Open</span></td>
+                </tr>
+                <tr>
+                  <td>Sunday</td>
+                  <td>Closed</td>
+                  <td><span class="badge badge-closed">Closed</span></td>
+                </tr>
+                <tr>
+                  <td>Public Holidays</td>
+                  <td>Closed</td>
+                  <td><span class="badge badge-closed">Closed</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Social Media -->
+          <div class="sidebar-card">
+            <h3 class="sidebar-card-title">
+              <!-- Share icon -->
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="18" cy="5" r="3"/>
+                <circle cx="6" cy="12" r="3"/>
+                <circle cx="18" cy="19" r="3"/>
+                <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
+                <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+              </svg>
+              Follow Us
+            </h3>
+            <div class="social-grid">
+
+              <!-- Instagram -->
+              <a href="#" class="social-link" aria-label="UrbanHeaven on Instagram">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                </svg>
+                Instagram
+              </a>
+
+              <!-- TikTok (represented with a music note shape) -->
+              <a href="#" class="social-link" aria-label="UrbanHeaven on TikTok">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/>
+                </svg>
+                TikTok
+              </a>
+
+              <!-- Facebook -->
+              <a href="#" class="social-link" aria-label="UrbanHeaven on Facebook">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+                </svg>
+                Facebook
+              </a>
+
+              <!-- Pinterest -->
+              <a href="#" class="social-link" aria-label="UrbanHeaven on Pinterest">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M12 2C6.48 2 2 6.48 2 12c0 4.24 2.65 7.86 6.39 9.29-.09-.78-.17-1.98.03-2.83.19-.77 1.27-5.22 1.27-5.22s-.32-.65-.32-1.61c0-1.51.88-2.64 1.97-2.64.93 0 1.38.7 1.38 1.54 0 .94-.6 2.34-.91 3.64-.26 1.09.54 1.97 1.61 1.97 1.93 0 3.42-2.04 3.42-4.97 0-2.6-1.87-4.42-4.54-4.42-3.09 0-4.9 2.32-4.9 4.72 0 .93.36 1.93.81 2.48.09.11.1.2.07.31-.08.34-.27 1.09-.3 1.24-.05.2-.17.24-.38.14-1.41-.66-2.3-2.72-2.3-4.38 0-3.56 2.59-6.84 7.47-6.84 3.92 0 6.97 2.8 6.97 6.53 0 3.9-2.46 7.03-5.87 7.03-1.15 0-2.22-.6-2.59-1.3l-.7 2.62c-.26.97-.94 2.18-1.4 2.92.98.3 2.01.46 3.07.46 5.52 0 10-4.48 10-10S17.52 2 12 2z"/>
+                </svg>
+                Pinterest
+              </a>
+
+            </div>
+          </div>
+
+          <!-- Response time note -->
+          <div class="sidebar-card" style="background: var(--clr-pink-light); border-color: var(--clr-pink);">
+            <h3 class="sidebar-card-title" style="margin-bottom: 12px;">
+              <!-- Lightning bolt -->
+              <svg viewBox="0 0 24 24" aria-hidden="true" style="stroke: var(--clr-pink-dark);">
+                <polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/>
+              </svg>
+              Fast Responses
+            </h3>
+            <p style="font-size: 0.88rem; color: var(--clr-grey-text); line-height: 1.7;">
+              Our support team typically responds within
+              <strong style="color: var(--clr-pink-dark);">2-4 hours</strong>
+              during business hours. For urgent orders, call us directly.
+            </p>
+          </div>
+
+        </aside>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         GOOGLE MAPS EMBED
+    ============================================================ -->
+    <div class="map-section" aria-label="Store location map">
+      <div class="map-wrapper">
+        <div class="map-tag" aria-label="Store location details">
+          <p class="map-tag-name">
+            <span class="map-tag-dot" aria-hidden="true"></span>
+            UrbanHeaven — Enugu
+          </p>
+          <p class="map-tag-addr">14 Holyghost, Enugu, 8001</p>
+        </div>
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13258.69456793706!2d18.408655!3d-33.924869!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1dcc5da4ad9c1a05%3A0x5229e8ef0f0c2f4a!2sCape%20Town%20City%20Centre%2C%20Cape%20Town%2C%208001!5e0!3m2!1sen!2sza!4v1680000000000"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="UrbanHeaven store location on Google Maps"
+        ></iframe>
+      </div>
+    </div>
+
+    <!-- ============================================================
+         FAQ SECTION
+    ============================================================ -->
+    <section class="faq-section" aria-labelledby="faq-heading">
+      <div class="faq-inner">
+        <div class="faq-header">
+          <div>
+            <p class="section-label" aria-hidden="true">FAQ</p>
+            <h2 class="section-title" id="faq-heading">Frequently Asked<br/>Questions</h2>
+          </div>
+          <p class="section-desc">
+            Can't find what you're looking for? Send us a message using the form above.
+          </p>
+        </div>
+
+        <div class="faq-grid" role="list">
+
+          <details class="faq-item" role="listitem">
+            <summary>
+              How long does delivery take?
+              <span class="faq-icon" aria-hidden="true">
+                <!-- Plus icon -->
+                <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </span>
+            </summary>
+            <p class="faq-body">
+              Standard delivery within Nigeria takes 3-5 business days. Express shipping
+              (1-2 business days) is available at checkout for an additional fee. International
+              orders may take 7-14 business days depending on your location.
+            </p>
+          </details>
+
+          <details class="faq-item" role="listitem">
+            <summary>
+              What is your return and refund policy?
+              <span class="faq-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </span>
+            </summary>
+            <p class="faq-body">
+              We offer a hassle-free 30-day return policy. Items must be in their original
+              condition with tags attached. Simply contact us with your order number and reason
+              for return, and we'll arrange a collection or drop-off point near you. Refunds are
+              processed within 5-7 business days.
+            </p>
+          </details>
+
+          <details class="faq-item" role="listitem">
+            <summary>
+              Do you offer free shipping?
+              <span class="faq-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </span>
+            </summary>
+            <p class="faq-body">
+              Yes! We offer free standard shipping on all orders over N50,000 within Nigeria.
+              Orders below N50,000 attract a flat shipping fee of N2000. We periodically run free
+              shipping promotions for all orders — subscribe to our newsletter to be notified.
+            </p>
+          </details>
+
+          <details class="faq-item" role="listitem">
+            <summary>
+              How do I track my order?
+              <span class="faq-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </span>
+            </summary>
+            <p class="faq-body">
+              Once your order is dispatched, you'll receive a confirmation email with a tracking
+              number. You can use this number on our courier partner's website to track your
+              parcel in real time. If you experience any issues with tracking, contact us
+              directly and we'll assist immediately.
+            </p>
+          </details>
+
+          <details class="faq-item" role="listitem">
+            <summary>
+              Are your products authentic and good quality?
+              <span class="faq-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </span>
+            </summary>
+            <p class="faq-body">
+              Absolutely. At UrbanHeaven, we source every product directly from verified
+              suppliers and brands. We perform quality checks before dispatching orders. If you
+              ever receive a product that doesn't meet our quality standards, we will replace it
+              or issue a full refund — no questions asked.
+            </p>
+          </details>
+
+          <!-- Spanning full width on last item -->
+          <details class="faq-item" role="listitem" style="grid-column: 1 / -1;">
+            <summary>
+              Can I change or cancel my order after placing it?
+              <span class="faq-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </span>
+            </summary>
+            <p class="faq-body">
+              Orders can be modified or cancelled within 12 hours of being placed, as long as
+              they have not yet been dispatched. Contact our support team as soon as possible
+              via phone or email. Once an order has been collected by our courier, it cannot be
+              cancelled but you can still initiate a return once it arrives.
+            </p>
+          </details>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer-inner">
+      <div class="footer-grid">
+
+        <!-- Brand -->
+        <div class="footer-brand">
+          <p class="footer-brand-logo">Urban<span>Heaven</span></p>
+          <p>
+           
+          </p>
+          <nav class="footer-social" aria-label="Social media links">
+            <a href="#" class="footer-social-btn" aria-label="Instagram">Tech-forward, quality-driven. UrbanHeaven Gadgets is your destination for cutting-edge devices that fit your lifestyle. Based in Nigeria, delivering innovative gadgets across the country.
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+              </svg>
+            </a>
+            <a href="#" class="footer-social-btn" aria-label="TikTok">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/>
+              </svg>
+            </a>
+            <a href="#" class="footer-social-btn" aria-label="Facebook">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+              </svg>
+            </a>
+            <a href="#" class="footer-social-btn" aria-label="Pinterest">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 2C6.48 2 2 6.48 2 12c0 4.24 2.65 7.86 6.39 9.29-.09-.78-.17-1.98.03-2.83l1.27-5.22s-.32-.65-.32-1.61c0-1.51.88-2.64 1.97-2.64.93 0 1.38.7 1.38 1.54 0 .94-.6 2.34-.91 3.64-.26 1.09.54 1.97 1.61 1.97 1.93 0 3.42-2.04 3.42-4.97 0-2.6-1.87-4.42-4.54-4.42-3.09 0-4.9 2.32-4.9 4.72 0 .93.36 1.93.81 2.48.09.11.1.2.07.31l-.3 1.24c-.05.2-.17.24-.38.14-1.41-.66-2.3-2.72-2.3-4.38 0-3.56 2.59-6.84 7.47-6.84 3.92 0 6.97 2.8 6.97 6.53 0 3.9-2.46 7.03-5.87 7.03-1.15 0-2.22-.6-2.59-1.3l-.7 2.62c-.26.97-.94 2.18-1.4 2.92.98.3 2.01.46 3.07.46 5.52 0 10-4.48 10-10S17.52 2 12 2z"/>
+              </svg>
+            </a>
+          </nav>
+        </div>
+
+        <!-- Quick Links -->
+        <div>
+          <p class="footer-col-title">Quick Links</p>
+          <nav class="footer-links" aria-label="Quick navigation links">
+            <a href="index.html">Home</a>
+            <a href="products.html">Shop All</a>
+            <a href="about.html">Our Story</a>
+            <a href="contact.html">Contact</a>
+          </nav>
+        </div>
+
+        <!-- Categories -->
+        <div>
+          <p class="footer-col-title">Categories</p>
+          <nav class="footer-links" aria-label="Product category links">
+            <a href="products.html">Phones</a>
+            <a href="products.html">Laptops</a>
+            <a href="products.html">Accessories</a>
+            <a href="products.html">New Arrivals</a>
+            <a href="products.html">Sale</a>
+          </nav>
+        </div>
+
+        <!-- Support -->
+        <div>
+          <p class="footer-col-title">Support</p>
+          <nav class="footer-links" aria-label="Support and policy links">
+            <a href="contact.html">Help Centre</a>
+            <a href="#">Track My Order</a>
+            <a href="#">Returns</a>
+            <a href="#">Size Guide</a>
+            <a href="#">Privacy Policy</a>
+          </nav>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <p>2026 UrbanHeaven. All rights reserved.</p>
+        <nav class="footer-bottom-links" aria-label="Legal links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="#">Cookie Policy</a>
+        </nav>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- ============================================================
+       JAVASCRIPT
+  ============================================================ -->
+  <script>
+    /* ----- Mobile Menu Toggle ----- */
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const mobileMenu   = document.getElementById('mobileMenu');
+
+    hamburgerBtn.addEventListener('click', function() {
+      const isOpen = mobileMenu.classList.toggle('open');
+      hamburgerBtn.setAttribute('aria-expanded', isOpen.toString());
+    });
+
+    /* Close mobile menu when a link is clicked */
+    mobileMenu.querySelectorAll('a').forEach(function(link) {
+      link.addEventListener('click', function() {
+        mobileMenu.classList.remove('open');
+        hamburgerBtn.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    /* ----- Contact Form Submission ----- */
+    const contactForm = document.getElementById('contactForm');
+    const formSuccess = document.getElementById('formSuccess');
+
+    contactForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      /* Basic validation */
+      var fname   = document.getElementById('fname').value.trim();
+      var email   = document.getElementById('email').value.trim();
+      var subject = document.getElementById('subject').value;
+      var message = document.getElementById('message').value.trim();
+      var privacy = document.getElementById('privacy').checked;
+
+      if (!fname || !email || !subject || !message || !privacy) {
+        alert('Please fill in all required fields and accept the privacy policy.');
+        return;
+      }
+
+      /* Email format check */
+      var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        alert('Please enter a valid email address.');
+        return;
+      }
+
+      /* Show success */
+      contactForm.style.display  = 'none';
+      formSuccess.style.display  = 'block';
+    });
+
+    /* ----- Scroll animation for section reveals ----- */
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity  = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.sidebar-card, .form-card, .faq-item').forEach(function(el) {
+      el.style.opacity   = '0';
+      el.style.transform = 'translateY(24px)';
+      el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      observer.observe(el);
+    });
+  </script>
+
+</body>
+</html>
